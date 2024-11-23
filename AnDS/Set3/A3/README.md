@@ -1,4 +1,4 @@
-# A2
+# A3
 
 Cсылка на репозиторий: https://github.com/khadzakos/uni/tree/main/AnDS/Set3/A3
 
