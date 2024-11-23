@@ -82,12 +82,14 @@ int main() {
     min_y = b.y - b.r;
     max_x = a.x + a.r;
     max_y = a.y + a.r;
-    std::cout << min_x << ' ' << max_x << ' ' << min_y << ' ' << max_y << std::endl;
-    for (int num_of_points = 100; num_of_points <= 1000000; num_of_points += 500) {
-        Annealing annealing(min_x, max_x, min_y, max_y);
-        double area = annealing.solve(a, b, c, num_of_points);
-        csvAnnealing2 << num_of_points << ',' << area << std::endl;
-    }
+//    std::cout << min_x << ' ' << max_x << ' ' << min_y << ' ' << max_y << std::endl;
+//    for (int num_of_points = 100; num_of_points <= 1000000; num_of_points += 500) {
+//        Annealing annealing(min_x, max_x, min_y, max_y);
+//        double area = annealing.solve(a, b, c, num_of_points);
+//        csvAnnealing2 << num_of_points << ',' << area << std::endl;
+//    }
 
+    csvAnnealing1.close();
+    csvAnnealing2.close();
     return 0;
 }
