@@ -2,11 +2,11 @@
 
 Cсылка на репозиторий: https://github.com/khadzakos/uni/tree/main/AnDS/Set3/A3
 
-ID посылки на Codeforces: 
+ID посылки на Codeforces: **292874070**
 
-Ссылка на посылку: 
+Ссылка на посылку: https://dsahse.contest.codeforces.com/group/NOflOR1Qt0/contest/565612/submission/292874070
 
-Ссылка на Colab: 
+Ссылка на Colab: https://colab.research.google.com/drive/1mQnbUYQMnOA1wTWR88rDgV3Mlqow-kzD?usp=sharing
 
 ### Навигация
 В папке **data** храняться файлы **sort_results.csv** и **introsort_results.csv**. В первом файле храняться результаты замеров времени работы алгоритма сортировки слиянием, во втором - слиянием с вставками. В каждом файле храняться результаты замеров времени работы алгоритма для массивов размером от 500 до 10000 элементов. Каждая строка файла содержит размер массива и время работы алгоритма в микросекундах. 
