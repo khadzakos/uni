@@ -9,7 +9,10 @@ Node::Node(int value) {
     this->value = value;
 }
 
-Node::~Node() = default;
+Node::~Node() {
+    delete left;
+    delete right;
+}
 
 AVLTree::AVLTree() : root_(nullptr), size_(0) {}
 
@@ -161,7 +164,6 @@ Node *AVLTree::removeNode(Node *node, int value) {
         Node *left = node->left;
         Node *right = node->right;
         --size_;
-        delete node;
         if (right == nullptr) {
             return left;
         }
