@@ -1,25 +1,35 @@
 package hse.zoo.services;
 
 import hse.zoo.models.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Component
 public class Zoo {
-    private VetClinic clinic;
-    private int inventory_number = 0;
+    private final VetClinic clinic;
     private final List<Animal> animals = new ArrayList<>();
-    private final List<Thing> inventory = new ArrayList<>();
+    private final List<Thing> things = new ArrayList<>();
 
+    @Autowired
     public Zoo(VetClinic clinic) {
         this.clinic = clinic;
     }
 
     public void AddAnimal(Animal animal) {
+        int number = animal.GetInventoryNumber();
+        for (Animal a : animals) {
+            if (a.GetInventoryNumber() == number) {
+                System.out.println("Животное с таким инвентарным номером уже есть в зоопарке.");
+                return;
+            }
+        }
+
         if (clinic.IsHealthy(animal)) {
-            animal.SetInventoryNumber(inventory_number);
             animals.add(animal);
-            inventory_number++;
             System.out.println(animal.GetType() + " " + animal.GetName() + " принят в зоопарк.");
         } else {
             System.out.println("К сожалению, " + animal.GetType() + " " + animal.GetName() + " не прошел проверку ветеринара и не может быть добавлен в зоопарк.");
@@ -27,9 +37,7 @@ public class Zoo {
     }
 
     public void AddThing(Thing thing) {
-        thing.SetInventoryNumber(inventory_number);
-        inventory.add(thing);
-        inventory_number++;
+        things.add(thing);
         System.out.println("Предмет " + thing.GetInventoryNumber() + " добавлен в инвентарь.");
     }
 
@@ -63,6 +71,36 @@ public class Zoo {
     }
 
     public int GetInventoryCount() {
-        return inventory.size();
+        return things.size();
+    }
+
+    public void ShowInventory() {
+        System.out.println("Инвентарь животных:");
+        for (Animal animal : animals) {
+            System.out.println(animal.GetType() + " " + animal.GetName() + " - " + animal.GetInventoryNumber());
+        }
+
+        System.out.println("Инвентарь вещей:");
+        for (Thing thing : things) {
+            System.out.println(thing.GetType() + " - " + thing.GetInventoryNumber());
+        }
+    }
+
+    public Optional<Animal> FindAnimalByNumber(int number) {
+        for (Animal animal : animals) {
+            if (animal.GetInventoryNumber() == number) {
+                return Optional.of(animal);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public Optional<Thing> FindThingByNumber(int number) {
+        for (Thing thing : things) {
+            if (thing.GetInventoryNumber() == number) {
+                return Optional.of(thing);
+            }
+        }
+        return Optional.empty();
     }
 }

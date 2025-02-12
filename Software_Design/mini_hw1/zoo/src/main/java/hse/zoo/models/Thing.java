@@ -3,9 +3,11 @@ package hse.zoo.models;
 import hse.zoo.interfaces.IInventory;
 
 public class Thing implements IInventory {
+    private String type;
     private int inventory_number;
 
-    public Thing(int number) {
+    public Thing(String type, int number) {
+        this.type = type;
         this.inventory_number = number;
     }
 
@@ -14,7 +16,7 @@ public class Thing implements IInventory {
         return inventory_number;
     }
 
-    public void SetInventoryNumber(int inventory_number) {
-        this.inventory_number = inventory_number;
+    public String GetType() {
+        return type;
     }
 }

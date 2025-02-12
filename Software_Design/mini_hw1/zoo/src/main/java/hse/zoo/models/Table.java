@@ -2,6 +2,6 @@ package hse.zoo.models;
 
 public class Table extends Thing {
     public Table(int number) {
-        super(number);
+        super("Стол", number);
     }
 }
