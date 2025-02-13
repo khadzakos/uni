@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class Zoo {
@@ -42,6 +41,10 @@ public class Zoo {
     }
 
     public void ShowAnimals() {
+        if (animals.isEmpty()) {
+            System.out.println("В зоопарке нет животных.");
+            return;
+        }
         System.out.println("Животные в зоопарке:");
         for (Animal animal : animals) {
             System.out.println(animal.GetType() + " " + animal.GetName() + " - " + (animal.GetClassification().equals("Herbo") ? "Травоядное" : "Плотоядное"));
@@ -49,6 +52,10 @@ public class Zoo {
     }
 
     public int ShowContactAnimals() {
+        if (animals.isEmpty()) {
+            System.out.println("В зоопарке нет животных.");
+            return 0;
+        }
         int count = 0;
         System.out.println("Животные в зоопарке, которые контактны с посетителями:");
         for (Animal animal : animals) {

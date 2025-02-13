@@ -43,15 +43,19 @@ public class ZooApplication {
 							System.out.println("Такого номера нет в списке.");
 							break;
 						}
-						System.out.println("Введите сколько питания потребляет животное:");
+						System.out.println("Введите сколько питания потребляет животное в килограммах:");
 						int food = scanner.nextInt();
 						scanner.nextLine();
-						System.out.println("Введите инвентарный номер животного:");
+						System.out.println("Задайте инвентарный номер животного:");
 						int number = scanner.nextInt();
 						scanner.nextLine();
-						System.out.println("Животное здорово? (true/false)");
-						boolean isHealthy = scanner.nextBoolean();
-						scanner.nextLine();
+						System.out.println("Животное здорово? (y/n)");
+						String isHealthyStr = scanner.nextLine();
+						if (!isHealthyStr.equals("y") && !isHealthyStr.equals("n")) {
+							System.out.println("Введите y или n.");
+							break;
+						}
+						boolean isHealthy = isHealthyStr.equals("y");
 
 						int kindness = 0;
 						if (typeInt == 1 || typeInt == 2) {
