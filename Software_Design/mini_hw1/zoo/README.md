@@ -26,7 +26,7 @@ zoo/
 │   │   ├── java/
 │   │   │   └── hse/
 │   │   │       └── zoo/
-│   │   │           ├── config/ - конфигурация Spring
+│   │   │           ├── config/ - конфигурация DI-контейнера для Spring
 │   │   │           │   └── AppConfig.java
 │   │   │           ├── models/ - модели данных
 │   │   │           │   ├── Animal.java
