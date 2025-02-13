@@ -36,7 +36,7 @@ public class ZooApplication {
 					case 1:
 						System.out.println("Введите имя животного:");
 						String name = scanner.nextLine();
-						System.out.println("Введите номер животного:\n 1. Обезьяна\n 2. Кролик\n 3. Тигр\n 4. Вокл\n");
+						System.out.println("Введите номер животного:\n 1. Обезьяна\n 2. Кролик\n 3. Тигр\n 4. Вокл");
 						String type = scanner.nextLine();
 						int typeInt = Integer.parseInt(type);
 						if (typeInt < 1 || typeInt > 4) {
@@ -93,12 +93,23 @@ public class ZooApplication {
 						System.out.println("Необходимое количество питания(кг): " + foodFactor);
 						break;
 					case 5:
-						System.out.println("Введите тип предмета:");
+						System.out.println("Введите тип предмета:\n 1. Компьютер\n 2. Стол");
 						String thingType = scanner.nextLine();
+						if (!thingType.equals("1") && !thingType.equals("2")) {
+							System.out.println("Такого номера нет в списке.");
+							break;
+						}
+						System.out.println("Введите инвентарный номер предмета:");
+						int thingTypeInt = Integer.parseInt(thingType);
 						int thingNumber = scanner.nextInt();
 						scanner.nextLine(); // consume newline
-						Thing thing = new Thing(thingType, thingNumber);
-						zoo.AddThing(thing);
+						if (thingTypeInt == 1) {
+							Thing computer = new Computer(thingNumber);
+							zoo.AddThing(computer);
+						} else {
+							Thing table = new Table(thingNumber);
+							zoo.AddThing(table);
+						}
 						break;
 					case 6:
 						zoo.ShowInventory();
@@ -107,19 +118,23 @@ public class ZooApplication {
 						System.out.println("Введите инвентарный номер животного:");
 						int animalNumber = scanner.nextInt();
 						scanner.nextLine(); // consume newline
-						zoo.FindAnimalByNumber(animalNumber).ifPresentOrElse(
-								a -> System.out.println("Найдено: " + a.GetType() + " " + a.GetName()),
-								() -> System.out.println("Животное не найдено")
-						);
+						Animal animal = zoo.FindAnimalByNumber(animalNumber);
+						if (animal != null) {
+							System.out.println("Найдено животное: " + animal.GetType() + " " + animal.GetName());
+						} else {
+							System.out.println("Животное не найдено.");
+						}
 						break;
 					case 8:
 						System.out.println("Введите инвентарный номер предмета:");
 						int thingInventoryNumber = scanner.nextInt();
 						scanner.nextLine(); // consume newline
-						zoo.FindThingByNumber(thingInventoryNumber).ifPresentOrElse(
-								t -> System.out.println("Найдено: " + t.GetType()),
-								() -> System.out.println("Предмет не найден")
-						);
+						Thing thing = zoo.FindThingByNumber(thingInventoryNumber);
+						if (thing != null) {
+							System.out.println("Найден предмет: " + thing.GetType());
+						} else {
+							System.out.println("Предмет не найден.");
+						}
 						break;
 					case 9:
 						System.out.println("До свидания!");

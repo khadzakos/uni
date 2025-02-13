@@ -48,13 +48,16 @@ public class Zoo {
         }
     }
 
-    public void ShowContactAnimals() {
+    public int ShowContactAnimals() {
+        int count = 0;
         System.out.println("Животные в зоопарке, которые контактны с посетителями:");
         for (Animal animal : animals) {
             if (animal.GetClassification().equals("Herbo") && ((Herbo) animal).IsKind()) {
                 System.out.println(animal.GetType() + " " + animal.GetName());
+                count++;
             }
         }
+        return count;
     }
 
     public int ShowZooFoodFactor() {
@@ -86,21 +89,26 @@ public class Zoo {
         }
     }
 
-    public Optional<Animal> FindAnimalByNumber(int number) {
+    public Animal FindAnimalByNumber(int number) {
         for (Animal animal : animals) {
             if (animal.GetInventoryNumber() == number) {
-                return Optional.of(animal);
+                return animal;
             }
         }
-        return Optional.empty();
+        return null;
     }
 
-    public Optional<Thing> FindThingByNumber(int number) {
+    public Thing FindThingByNumber(int number) {
         for (Thing thing : things) {
             if (thing.GetInventoryNumber() == number) {
-                return Optional.of(thing);
+                return thing;
             }
         }
-        return Optional.empty();
+        return null;
+    }
+
+    public void Clear() {
+        animals.clear();
+        things.clear();
     }
 }
